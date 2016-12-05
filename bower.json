@@ -1,9 +1,0 @@
-{
-  "name": "marketplace-ui",
-  "version": "0.5.0",
-  "description": "Front end webpack server for marketplace",
-  "private": true,
-  "dependencies": {
-    "w-widgets": "git@github.com:wishabi/w-widgets.git#marketplace"
-  }
-}

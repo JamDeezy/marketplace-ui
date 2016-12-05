@@ -7,21 +7,33 @@ module.exports = {
   context: __dirname,
   entry: './src/marketplace.js',
   output: {
+    path: './bin',
     filename: debug ? './marketplace.js' : './marketplace.min.js',
-    // library: 'flipp',
-    // libraryTarget: 'var'
+    library: 'flipp',
+    libraryTarget: 'var'
   },
   devtool: 'source-map'
 }
 
 // Plugins
-module.exports.plugin = debug ? [] : [
+// Environment specific
+var plugins = debug ? [] : [
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({
     sourcemap: false
   })
 ]
+
+// Ubiquitous plugins
+plugins.push(
+  new webpack.ResolverPlugin(
+    new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
+  )
+)
+
+
+module.exports.plugin =
 
 // Resolve
 module.exports.resolve = {

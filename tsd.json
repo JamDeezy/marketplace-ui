@@ -10,6 +10,12 @@
     },
     "jquery.pjax/jquery.pjax.d.ts": {
       "commit": "a84e3f1af08e57bd3911c3cb6d13df89400def3d"
+    },
+    "webcomponents.js/webcomponents.js.d.ts": {
+      "commit": "87b80408d2f0c3238727f75af67cb4ed54912185"
+    },
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "bddf14ed27fb8bb3940b54dcf0c57e029206f6a8"
     }
   }
 }

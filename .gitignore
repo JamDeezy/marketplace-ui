@@ -19,6 +19,6 @@ tmp/.gitkeep
 /node_modules
 /typings
 
-marketplace.js
-marketplace.js.map
-marketplace.min.js
+bin/marketplace.js
+bin/marketplace.js.map
+bin/marketplace.min.js
