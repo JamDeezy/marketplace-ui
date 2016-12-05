@@ -42,7 +42,7 @@ module.exports.resolve = {
     path.resolve('./src/')
   ],
   extensions: ['', '.ts', '.js', 'css', 'scss'],
-  moduleDirectories: ['node_modules', 'bower_components']
+  moduleDirectories: ['node_modules']
 }
 
 // Loaders

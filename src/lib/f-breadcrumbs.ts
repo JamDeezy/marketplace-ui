@@ -85,9 +85,7 @@ class Breadcrumbs {
     }
 
     this._element.innerHTML = '';
-    this._element.appendChild(
-      marketplace.createDocumentFragment(template(viewModel))
-     );
+    marketplace.insertFragment(this, template(viewModel));
   }
 
   get merchantId(): number {

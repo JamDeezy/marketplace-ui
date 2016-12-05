@@ -1,5 +1,6 @@
 import $             = require('jquery');
 import moment        = require('moment');
+require('web-components-polyfills');
 
 module marketplace {
   export function getPropertyDescriptor(obj: Object, prop: string):
@@ -52,8 +53,13 @@ module marketplace {
     return true;
   }
 
-  export function createDocumentFragment(html: string): DocumentFragment {
-    return document.createRange().createContextualFragment(html);
+  export function insertFragment(el: any, html: string) {
+    try {
+      el.appendChild(document.createRange().createContextualFragment(html));
+    } catch(e) {
+      // Catch case for Safari
+      el.insertAdjacentHTML("beforeend", html);
+    }
   }
 
   export function getChild(parent, selector): any {

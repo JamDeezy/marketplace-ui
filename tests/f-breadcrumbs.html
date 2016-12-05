@@ -1,16 +1,11 @@
 <!doctype html>
 <html>
   <head>
-    <title>w-date-time-picker</title>
-    <script src="../lib/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../bower_components/w-widgets/lib/w-base.html">
-    <link rel="import" href="../bower_components/w-widgets/lib/w-jasmine.html">
-    <link rel="import" href="../lib/f-admin-base.html">
-    <link rel="import" href="../lib/f-breadcrumbs.html">
-    <w-seamless-iframe-helper></w-seamless-iframe-helper>
+    <title>f-breadcrumbs tests</title>
+    <script src="../bin/marketplace.js"></script>
 
     <style>
-      w-demo {
+      .demo {
         vertical-align: top;
         margin: 10px;
         padding: 10px;
@@ -22,22 +17,12 @@
     </style>
   </head>
   <body>
-    <h1>f-date-time-picker</h1>
-
-    <w-demo>
-      <f-breadcrumbs merchant-id="2207"></f-breadcrumbs>
-      <f-breadcrumbs campaign-id="1"></f-breadcrumbs>
-      <f-breadcrumbs budget-id="1"></f-breadcrumbs>
-    </w-demo>
-
-    <w-jasmine></w-jasmine>
-
-    <script>
-      window.addEventListener('WebComponentsReady', function() {
-        document.body.removeAttribute('unresolved');
-        document.querySelector('w-jasmine').run(function() {
-        });
-      });
-    </script>
+    <h1>f-breadcrumbs tests</h1>
+    <div class="demo">
+      <f-marketplace-server src="http://localhost:3000"></f-marketplace-server>
+      <f-breadcrumbs merchant-id="234"></f-breadcrumbs>
+      <!-- <f-breadcrumbs campaign-id="1"></f-breadcrumbs>
+      <f-breadcrumbs budget-id="1"></f-breadcrumbs> -->
+    </div>
   </body>
 </html>

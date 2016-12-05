@@ -13,23 +13,18 @@
     "handlebars": "^4.0.6",
     "jquery": "^3.1.1",
     "moment": "^2.17.0",
-    "node-sass": "^3.13.0",
     "pjax": "^0.2.4",
     "typescript": "^2.0.10",
-    "webcomponents": "^0.1.4",
     "webpack": "^1.13.3"
   },
   "devDependencies": {
-    "bower": "^1.8.0",
     "css-loader": "^0.26.1",
     "handlebars-loader": "^1.4.0",
-    "jasmine": "^2.5.2",
     "node-sass": "^3.13.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "ts-loader": "^1.2.2",
     "typings": "^2.0.0",
-    "webpack": "^1.13.3",
     "yaml-loader": "^0.4.0"
   }
 }
