@@ -1,8 +1,7 @@
-import $             = require('jquery');
-import moment        = require('moment');
-require('web-components-polyfills');
+import $ = require('jquery');
 
-module marketplace {
+module CustomElements {
+
   export function getPropertyDescriptor(obj: Object, prop: string):
       PropertyDescriptor {
     for (var proto = obj; proto ; proto = Object.getPrototypeOf(proto)) {
@@ -66,9 +65,6 @@ module marketplace {
     return $(parent).find(selector);
   }
 
-  export function parseDateTime(dateTime: string): string {
-    return moment(dateTime).format('YYYY/MM/DD HH:mm');
-  }
 }
 
-export default marketplace;
+export default CustomElements;

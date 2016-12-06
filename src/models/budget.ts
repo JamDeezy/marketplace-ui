@@ -1,9 +1,9 @@
-import BudgetPaceModel from './f-marketplace-budget-pace-model'
-import FlyerRun from './f-marketplace-flyer-run'
-import FlyerType from './f-marketplace-flyer-type'
-import marketplace from './f-marketplace-base'
+import BudgetPace from './budget_pace'
+import FlyerRun from './flyer_run'
+import FlyerType from './flyer_type'
+import moment = require('moment');
 
-class BudgetModel {
+class Budget {
   id: number;
   name: string;
   startTime: string;
@@ -16,7 +16,7 @@ class BudgetModel {
   flyerRuns: FlyerRun[] = [];
   flyerTypes: FlyerType[] = [];
   fsas: string;
-  budgetPaces: BudgetPaceModel[] = [];
+  budgetPaces: BudgetPace[] = [];
   premiumEngagements: number = 0;
   quota: number = 0;
   quotaFilled: number = 0;
@@ -30,8 +30,8 @@ class BudgetModel {
   projectedFlippFill: number = 0;
   projectedFlyersFill: number = 0;
 
-  static fromJson(json: any): BudgetModel {
-    var b = new BudgetModel();
+  static fromJson(json: any): Budget {
+    var b = new Budget();
 
     b.id = json['id'];
     b.name = json['name'];
@@ -55,7 +55,7 @@ class BudgetModel {
       b.flyerTypes.push(FlyerType.fromJson(json['flyer_types'][i]));
     }
     for (var i = 0; i < json['budget_paces'].length; i++) {
-      b.budgetPaces.push(BudgetPaceModel.fromJson(json['budget_paces'][i]))
+      b.budgetPaces.push(BudgetPace.fromJson(json['budget_paces'][i]))
     }
 
     b.billableEngagements = json['billable_egagements'];
@@ -69,14 +69,14 @@ class BudgetModel {
     return b;
   }
 
-  static fetch(id: number): Promise<BudgetModel> {
-    return new Promise<BudgetModel>((resolve, reject) => {
+  static fetch(id: number): Promise<Budget> {
+    return new Promise<Budget>((resolve, reject) => {
       $.ajax({
         url: '/api/budgets/' + id,
         method: 'GET',
         complete: function(response) {
           var json = response.responseJSON;
-          resolve(BudgetModel.fromJson(json['budget']));
+          resolve(Budget.fromJson(json['budget']));
         },
         error: function(error) {
           reject(error);
@@ -173,11 +173,11 @@ class BudgetModel {
     str += this.budgetPaces.map(function(data) {
       return '<li>'
         + data.quota + ' ('
-        + marketplace.parseDateTime(data.startTime) + ' - '
-        + marketplace.parseDateTime(data.endTime) + ')</li>'
+        + moment(data.startTime).format('YYYY/MM/DD HH:mm') + ' - '
+        + moment(data.endTime).format('YYYY/MM/DD HH:mm') + ')</li>'
     }).join('');
     return str + '</ul>';
   }
 }
 
-export default BudgetModel;
+export default Budget;

@@ -41,8 +41,8 @@ module.exports.resolve = {
     path.resolve('./'),
     path.resolve('./src/')
   ],
-  extensions: ['', '.ts', '.js', 'css', 'scss'],
-  moduleDirectories: ['node_modules']
+  extensions: ['', '.ts', '.js'],
+  moduleDirectories: ['node_modules', 'src']
 }
 
 // Loaders

@@ -1,23 +1,12 @@
 import $ = require('jquery');
 
-import marketplace from './f-marketplace-base';
-import Merchant from './f-marketplace-merchant';
-import BudgetModel from './f-marketplace-budget-model';
-import CampaignModel from './f-marketplace-campaign-model';
+import Budget from 'models/budget';
+import Campaign from 'models/campaign';
+import Merchant from 'models/merchant';
 
 
-
-class Server {
-
-  constructor(private _element: ServerElement) {}
-
-  createdCallback() {
-    if (!this._element) {
-      Server.call(this, this);
-    }
-  }
-
-  getMerchant(merchantId: number): Promise<Merchant> {
+module Server {
+  export function getMerchant(merchantId: number): Promise<Merchant> {
     var promise = new Promise<Merchant>(
         (resolve, reject) => {
         resolve(Merchant.fromJson(
@@ -62,8 +51,8 @@ class Server {
     return promise;
   }
 
-  getCampaign(campaignId: number): Promise<CampaignModel> {
-    var promise = new Promise<CampaignModel>(
+  export function getCampaign(campaignId: number): Promise<Campaign> {
+    var promise = new Promise<Campaign>(
         (resolve, reject) => {
       $.ajax({
           url: this.src + '/api/campaigns/' + campaignId,
@@ -71,7 +60,7 @@ class Server {
           data: {},
           complete: function(response) {
             var json = response.responseJSON;
-            resolve(CampaignModel.fromJson(json['campaign']))
+            resolve(Campaign.fromJson(json['campaign']))
           },
           error: function(error) {
             reject(error)
@@ -82,8 +71,8 @@ class Server {
     return promise;
   }
 
-  getBudget(budgetId: number): Promise<BudgetModel> {
-    var promise = new Promise<BudgetModel>(
+  export function getBudget(budgetId: number): Promise<Budget> {
+    var promise = new Promise<Budget>(
         (resolve, reject) => {
       $.ajax({
           url: this.src + '/api/budgets/' + budgetId,
@@ -91,7 +80,7 @@ class Server {
           data: {},
           complete: function(response) {
             var json = response.responseJSON;
-            resolve(BudgetModel.fromJson(json['budget']))
+            resolve(Budget.fromJson(json['budget']))
           },
           error: function(error) {
             reject(error)
@@ -102,7 +91,7 @@ class Server {
     return promise;
   }
 
-  get(url: string): Promise<any> {
+  export function get(url: string): Promise<any> {
     var promise = new Promise<any>(
       (resolve, reject) => {
         $.ajax({
@@ -119,10 +108,10 @@ class Server {
         });
       }
     );
-    return promise
+    return promise;
   }
 
-  post(url: string, body: any): Promise<any> {
+  export function post(url: string, body: any): Promise<any> {
     var promise = new Promise<any>(
       (resolve, reject) => {
         $.ajax({
@@ -139,31 +128,9 @@ class Server {
         });
       }
     );
-    return promise
-  }
-
-  get src(): string {
-    var src = this._element.getAttribute('src');
-    return (src) ? src : "";
-  }
-
-  set src(value: string) {
-    this._element.setAttribute('src', value);
+    return promise;
   }
 
 }
 
-
-var ServerElement =
-  marketplace.registerElement('f-marketplace-server', HTMLElement, Server);
-
-interface ServerElement extends HTMLElement {
-  src: string;
-  getMerchant(merchantId: number): Promise<Merchant>;
-  getCampaign(campaignId: number): Promise<CampaignModel>;
-  getBudget(budgetId: number): Promise<BudgetModel>;
-  get(url: string): Promise<any>;
-  post(url: string, body: any): Promise<any>;
-}
-
-export default ServerElement;
+export default Server;

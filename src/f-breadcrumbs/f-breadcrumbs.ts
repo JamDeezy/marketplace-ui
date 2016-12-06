@@ -1,25 +1,19 @@
-import ServerElement from './f-marketplace-server';
-import marketplace from './f-marketplace-base';
-import Merchant from './f-marketplace-merchant';
-import BudgetModel from './f-marketplace-budget-model';
-import CampaignModel from './f-marketplace-campaign-model';
+import Server from 'modules/server';
+import CustomElements from 'modules/marketplace';
 
+import Merchant from 'models/merchant';
+import Budget from 'models/budget';
+import Campaign from 'models/campaign';
 
-require('stylesheets/f-breadcrumbs.scss');
 
 class Breadcrumbs {
 
   constructor(private _element: BreadcrumbsElement) {}
 
-  private _server: ServerElement;
-
   createdCallback() {
     if (!this._element) {
       Breadcrumbs.call(this, this);
     }
-
-    this._server = <ServerElement>document
-      .querySelector('f-marketplace-server')
 
     this._fetch();
   }
@@ -34,38 +28,38 @@ class Breadcrumbs {
 
   private _fetch() {
     if (this.budgetId) {
-      var campaign: CampaignModel, budget: BudgetModel;
-      this._server.getBudget(this.budgetId)
+      var campaign: Campaign, budget: Budget;
+      Server.getBudget(this.budgetId)
       .then((b) => {
         budget = b;
-        return this._server.getCampaign(budget.campaignId);
+        return Server.getCampaign(budget.campaignId);
       })
       .then((c) => {
         campaign = c;
-        return this._server.getMerchant(campaign.merchantId);
+        return Server.getMerchant(campaign.merchantId);
       })
       .then((merchant) => {
         this._render(merchant, campaign, budget);
       });
     } else if (this.campaignId) {
-      var campaign: CampaignModel;
-      this._server.getCampaign(this.campaignId)
+      var campaign: Campaign;
+      Server.getCampaign(this.campaignId)
       .then((c) => {
         campaign = c;
-        return this._server.getMerchant(campaign.merchantId);
+        return Server.getMerchant(campaign.merchantId);
       })
       .then((merchant) => {
         this._render(merchant, campaign);
       });
     } else if (this.merchantId) {
-      this._server.getMerchant(this.merchantId)
+      Server.getMerchant(this.merchantId)
       .then((merchant) => {
         this._render(merchant);
       });
     }
   }
 
-  private _render(merchant?: Merchant, campaign?: CampaignModel, budget?: BudgetModel) {
+  private _render(merchant?: Merchant, campaign?: Campaign, budget?: Budget) {
     var viewModel: any = {};
 
     if (merchant) {
@@ -85,7 +79,7 @@ class Breadcrumbs {
     }
 
     this._element.innerHTML = '';
-    marketplace.insertFragment(this, template(viewModel));
+    CustomElements.insertFragment(this, template(viewModel));
   }
 
   get merchantId(): number {
@@ -112,12 +106,15 @@ class Breadcrumbs {
     this._element.setAttribute('budget-id', value.toString());
   }
 
-}
+} // class Breadcrumbs
 
-var template = require('templates/f-breadcrumbs.handlebars');
+
+// Export
+require('./f-breadcrumbs.scss');
+var template = require('./f-breadcrumbs.handlebars');
 
 var BreadcrumbsElement =
-    marketplace.registerElement('f-breadcrumbs', HTMLElement, Breadcrumbs);
+    CustomElements.registerElement('f-breadcrumbs', HTMLElement, Breadcrumbs);
 
 interface BreadcrumbsElement extends HTMLElement {
   merchantId: number;

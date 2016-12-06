@@ -1,4 +1,4 @@
-class CampaignModel {
+class Campaign {
   id: number;
   name: string;
   opportunityId: string;
@@ -12,8 +12,8 @@ class CampaignModel {
   quotaFilled: number;
   merchantId: number;
 
-  static fromJson(json: any): CampaignModel {
-    var c = new CampaignModel();
+  static fromJson(json: any): Campaign {
+    var c = new Campaign();
     c.id = json['id'];
     c.name = json['name'];
     c.opportunityId = json['sf_opportunity_id'];
@@ -29,15 +29,15 @@ class CampaignModel {
     return c;
   }
 
-  static fetch(id: number): Promise<CampaignModel> {
-    return new Promise<CampaignModel>((resolve, reject) => {
+  static fetch(id: number): Promise<Campaign> {
+    return new Promise<Campaign>((resolve, reject) => {
       $.ajax({
         url: '/api/campaigns/' + id,
         method: 'GET',
         data: {},
         complete: function(response) {
           var json = response.responseJSON;
-          resolve(CampaignModel.fromJson(json['campaign']))
+          resolve(Campaign.fromJson(json['campaign']))
         },
         error: function(error) {
           reject(error)
@@ -72,4 +72,4 @@ class CampaignModel {
   }
 }
 
-export default CampaignModel;
+export default Campaign;

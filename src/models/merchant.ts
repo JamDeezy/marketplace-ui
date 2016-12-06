@@ -1,5 +1,5 @@
-import FlyerRun from './f-marketplace-flyer-run'
-import FlyerType from './f-marketplace-flyer-type'
+import FlyerRun from './flyer_run'
+import FlyerType from './flyer_type'
 
 class Merchant {
 

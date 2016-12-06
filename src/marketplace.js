@@ -6,5 +6,4 @@ if ('registerElement' in document) {
 
 require('stylesheets/reset.scss');
 
-require('lib/f-marketplace-server');
-require('lib/f-breadcrumbs');
+require('f-breadcrumbs/f-breadcrumbs.ts');
