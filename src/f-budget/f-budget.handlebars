@@ -1,0 +1,78 @@
+{{!-- Template html in here --}}
+<div name="wrapper">
+  <form name="form">
+    <div style="display: flex">
+      <f-input label="Name" name="name" type="text"></f-input>
+      <f-input label="Bulk" name="bulk" type="checkbox"
+               style="display: none"></f-input>
+    </div>
+    <div type="bulk">&nbsp;&nbsp;Bulk budget names will be name-1, name-2, name-3</div>
+    <div style="display: flex">
+      <f-input label="Start Time" name="start_time" type="datetime"></f-input>
+      <f-input label="End Time" name="end_time" type="datetime"></f-input>
+    </div>
+    <div name="total_days">6 Days</div>
+    <f-input label="FSAS (comma separated)" name="fsas" type="text"></f-input>
+    <div type="bulk">
+      <f-input label="Budget Frequency" name="bulk_frequency"
+               type="select" disabled>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="custom">Custom</option>
+      </f-input>
+      <f-input label="Custom Duration" name="bulk_duration"
+               type="text" size="3" disabled></f-input>
+      <f-input label="Rollover Sequential Budgets" name="bulk_auto_rollover"
+               type="checkbox" disabled></f-input>
+    </div>
+
+    <div style="display: flex">
+      <f-input label="Spending Mode" name="spending_mode" type="select">
+        <option value="asap">ASAP</option>
+        <option value="paced">Paced</option>
+      </f-input>
+      <f-input label="Pace Duration" name="pace_duration"
+               type="text" size="3" disabled>
+    </div>
+    <div name="budget_paces" style="display:none"></div>
+    <br>
+
+    <f-input label="Auto Optimize" name="auto_optimize"
+             type="checkbox" checked></f-input>
+    <div style="display: flex">
+      <f-input label="Budget" name="quota" type="number" step="0.01"></f-input>
+      <f-input label="Flipp Allocation (0 - 1.0)" name="flipp_allocation"
+               type="number" step="any"></f-input>
+    </div>
+    <div style="display: flex">
+      <f-input label="Flipp Quota" name="flipp_quota"
+               type="number" size="10" step="0.01"></f-input>
+      <f-input label="Flyers Quota" name="flyers_quota"
+               type="number" size="10" step="0.01"></f-input>
+    </div>
+    <br>
+
+    <f-input label="Rollover Budget target" name="rollover_budget_id"
+             type="select">
+      <option>Loading ...</option>
+    </f-input>
+    <div style="display: flex">
+      <f-input label="Budget Type" name="budget_type" type="select">
+        <option value="retailer">Retailer</option>
+        <option value="flyer_type">Flyer Type</option>
+        <option value="flyer_run">Flyer Run</option>
+      </f-input>
+      <f-input type="button" name="refresh_type"
+               style="line-height: 55px; margin-left: 15px;">Refresh</f-input>
+    </div>
+    <div name="flyers_list"></div>
+    <br>
+
+    <small>
+      <f-input label="Skip Validation" name="skip_validation"
+               type="checkbox"></f-label>
+    </small><br>
+
+    <f-input class="submit" name="submit" type="submit">{{submit}}</f-input>
+  </form>
+</div>

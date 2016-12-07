@@ -1,0 +1,75 @@
+f-budget {
+  display: block;
+  font-family: 'Source Sans Pro', sans-serif;
+
+  /* CSS */
+  [name=wrapper] {
+    f-input[name=end_time],
+    f-input[name=start_time],
+    [name=flipp_quota],
+    [name=flyers_quota],
+    [name=quota],
+    [name=flipp_allocation],
+    [name=name] {
+      width: 230px;
+    }
+
+    [name=spending_mode],
+    [name=budget_type],
+    [name=rollover_budget_id],
+    [name=bulk_frequency] {
+      width: 230px;
+
+      select {
+        width: 220px;
+      }
+    }
+
+    [name=pace_duration] {
+      width: 230px;
+      display: none;
+
+      input {
+        display: block;
+      }
+    }
+
+    [name=total_days],
+    [name=budget_paces],
+    [name=flyers_list] {
+      margin-left: 10px;
+      color: #09536b;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    [name=flyers_list] {
+      f-input {
+        [name=wrapper] {
+          height: auto;
+          label {
+            margin-left: 20px;
+          }
+
+          input {
+            top: 0px;
+          }
+        }
+      }
+    }
+
+    [type=bulk] {
+      display: none;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    [name=bulk_duration] {
+      width: 140px;
+
+      input {
+        width: 100px !important;
+      }
+    }
+  }
+}

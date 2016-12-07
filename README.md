@@ -45,3 +45,9 @@ DO NOT RUN THIS
 
     npm release
 
+
+TODO
+====
+* remove modules/server, only f-breadcrumbs uses this. instead separate ajax calls into models
+* look into live loading
+* create a yaml-model for http-server to serve

@@ -12,6 +12,10 @@ module.exports = {
     library: 'flipp',
     libraryTarget: 'var'
   },
+  externals: {
+    $: 'jquery',
+    moment: 'moment'
+  },
   devtool: 'source-map'
 }
 

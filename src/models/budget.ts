@@ -1,7 +1,10 @@
+require('moment');
+
+import Helper from 'modules/helper';
+
 import BudgetPace from './budget_pace'
 import FlyerRun from './flyer_run'
 import FlyerType from './flyer_type'
-import moment = require('moment');
 
 class Budget {
   id: number;
@@ -173,8 +176,8 @@ class Budget {
     str += this.budgetPaces.map(function(data) {
       return '<li>'
         + data.quota + ' ('
-        + moment(data.startTime).format('YYYY/MM/DD HH:mm') + ' - '
-        + moment(data.endTime).format('YYYY/MM/DD HH:mm') + ')</li>'
+        + Helper.parseDateTime(data.startTime) + ' - '
+        + Helper.parseDateTime(data.endTime) + ')</li>'
     }).join('');
     return str + '</ul>';
   }

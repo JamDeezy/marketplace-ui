@@ -1,5 +1,3 @@
-import $ = require('jquery');
-
 module CustomElements {
 
   export function getPropertyDescriptor(obj: Object, prop: string):
@@ -59,10 +57,6 @@ module CustomElements {
       // Catch case for Safari
       el.insertAdjacentHTML("beforeend", html);
     }
-  }
-
-  export function getChild(parent, selector): any {
-    return $(parent).find(selector);
   }
 
 }

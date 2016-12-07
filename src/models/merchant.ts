@@ -16,42 +16,38 @@ class Merchant {
     return m;
   }
 
-  static fetchFlyerRuns(merchantId: number): Promise<Array<FlyerRun>> {
+  static fetchFlyerRuns(merchantId: number, startTime?: string,
+                          endTime?: string): Promise<Array<FlyerRun>> {
     return new Promise<Array<FlyerRun>>((resolve, reject) => {
-      $.ajax({
-        url: '/api/merchants/' + merchantId + '/flyer_runs',
-        method: 'GET',
-        complete: function(response) {
-          var json = response.responseJSON;
-          resolve(json.flyer_runs.map(function(data: any) {
-            return FlyerRun.fromJson(data);
-          }));
-        },
-        error: function(error) {
-          reject(error);
+      $.get(
+        '/api/merchants/' + merchantId + '/flyer_runs',
+        {
+          'start_time': startTime,
+          'end_time': endTime
         }
+      ).done((response) => {
+        resolve(response.flyer_runs.map(function(data: any) {
+          return FlyerRun.fromJson(data);
+        }));
+      }).fail((error) => {
+        reject(error);
       })
     });
   }
 
   static fetchFlyerTypes(merchantId: number): Promise<Array<FlyerType>> {
     return new Promise<Array<FlyerType>>((resolve, reject) => {
-      $.ajax({
-        url: '/api/merchants/' + merchantId + '/flyer_types',
-        method: 'GET',
-        complete: function(response) {
-          var json = response.responseJSON;
-          resolve(json.flyer_types.map(function(data: any) {
-            return FlyerType.fromJson(data);
-          }));
-        },
-        error: function(error) {
-          reject(error);
-        }
+      $.get(
+        '/api/merchants/' + merchantId + '/flyer_types'
+      ).done((response) => {
+        resolve(response.flyer_types.map(function(data: any) {
+          return FlyerType.fromJson(data);
+        }));
+      }).fail(function(error) {
+        reject(error);
       })
     });
   }
-
 }
 
 export default Merchant;

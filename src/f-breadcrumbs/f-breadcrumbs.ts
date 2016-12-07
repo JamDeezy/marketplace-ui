@@ -1,9 +1,17 @@
 import Server from 'modules/server';
-import CustomElements from 'modules/marketplace';
+import CustomElement from 'modules/custom_element';
 
 import Merchant from 'models/merchant';
 import Budget from 'models/budget';
 import Campaign from 'models/campaign';
+
+
+// @Definition
+interface BreadcrumbsElement extends HTMLElement {
+  merchantId: number;
+  campaignId: number;
+  budgetId: number;
+}
 
 
 class Breadcrumbs {
@@ -79,7 +87,7 @@ class Breadcrumbs {
     }
 
     this._element.innerHTML = '';
-    CustomElements.insertFragment(this, template(viewModel));
+    CustomElement.insertFragment(this, template(viewModel));
   }
 
   get merchantId(): number {
@@ -109,17 +117,11 @@ class Breadcrumbs {
 } // class Breadcrumbs
 
 
-// Export
-require('./f-breadcrumbs.scss');
+// @Export
+var style    = require('./f-breadcrumbs.scss');
 var template = require('./f-breadcrumbs.handlebars');
 
 var BreadcrumbsElement =
-    CustomElements.registerElement('f-breadcrumbs', HTMLElement, Breadcrumbs);
-
-interface BreadcrumbsElement extends HTMLElement {
-  merchantId: number;
-  campaignId: number;
-  budgetId: number;
-}
+    CustomElement.registerElement('f-breadcrumbs', HTMLElement, Breadcrumbs);
 
 export default BreadcrumbsElement;

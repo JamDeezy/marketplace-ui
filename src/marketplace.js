@@ -6,4 +6,5 @@ if ('registerElement' in document) {
 
 require('stylesheets/reset.scss');
 
-require('f-breadcrumbs/f-breadcrumbs.ts');
+require('f-breadcrumbs/f-breadcrumbs');
+require('f-budget/f-budget');

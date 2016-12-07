@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>f-budget</title>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/moment/min/moment.min.js"></script>
+    <script src="../bin/marketplace.js"></script>
+
+    <style>
+      .demo {
+        vertical-align: top;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        display: inline-block;
+        background: #eef;
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>f-budget</h1>
+    <div class="demo">
+      <f-budget id="budget" budget-id="10"></f-budget>
+      <f-budget id="budget2" budget-id="11"></f-budget>
+    </div>
+
+    <script>
+      var budget = document.getElementById('budget');
+      var budget2 = document.getElementById('budget2');
+      budget.name = 'Test Name';
+      budget.endTime = moment().add(1, 'days');
+
+      budget2.name = 'Test Name 2';
+      budget2.endTime = moment().add(2, 'days');
+
+      // describe('f-budget-editor', function() {
+      //   it('shows the budget when set', function() {
+      //     var budgetEditor = document.createElement('f-budget-editor');
+      //     var budget = new flipp.marketplace.Budget();
+      //     var testName = 'Test2';
+      //     budget.name = testName
+      //     budgetEditor.budget = budget;
+      //     expect(budgetEditor.budget.name).toBe(testName);
+      //   });
+      // });
+    </script>
+  </body>
+</html>

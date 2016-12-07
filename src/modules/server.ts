@@ -1,4 +1,4 @@
-import $ = require('jquery');
+require('jquery');
 
 import Budget from 'models/budget';
 import Campaign from 'models/campaign';
